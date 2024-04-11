@@ -2,7 +2,6 @@ import React from 'react'
 import {useNavigate} from 'react-router'
 import './Home.css'
 import BGVideo from '../../Assets/StarVideo.mp4'
-import logo from '../../Assets/star-telecom.png'
 
 const Home = () => {
   const navigate = useNavigate()

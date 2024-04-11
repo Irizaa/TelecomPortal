@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./RegisterForm.css";
+import { AuthenticationRegistration } from "../../Types/Types";
+import { registerUser } from "../../Services/AuthenticationServices";
 
 const RegisterForm = () => {
 
@@ -9,6 +11,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [address, setAddress] = useState("")
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFirstName(e.target.value);
@@ -27,10 +30,22 @@ const RegisterForm = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setEmail(e.target.value);
   }
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setAddress(e.target.value);
+  }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      // form submission logic here
+  const handleRegistration = () => {
+
+    const registrationDetails: AuthenticationRegistration = {
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      address: address
+    }
+    console.log(registrationDetails)
+    registerUser(registrationDetails)
   };
 
   const handleTogglePassword = () => {
@@ -43,7 +58,7 @@ const RegisterForm = () => {
         <h1>First time here?</h1>
         <h3>Sign up and discover the endless posibilities with Star Telecom!</h3>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="form-group">
             <label htmlFor="firstName"></label>
             <input
@@ -64,6 +79,17 @@ const RegisterForm = () => {
                 value={lastName}
                 onChange={handleLastNameChange}
                 placeholder="Last Name"
+            />
+        </div>
+        <div className="form-group">
+            <label htmlFor="address"></label>
+            <input
+                className="form-control"
+                type="text"
+                id="address"
+                value={address}
+                onChange={handleAddressChange}
+                placeholder="Address"
             />
         </div>
           <div className="form-group">
@@ -111,7 +137,7 @@ const RegisterForm = () => {
                         </div>
                 </div>
             <div className="button-container">
-                    <button className="button-register" type="submit">Create Your Account</button>
+                    <button className="button-register" onClick={handleRegistration}>Create Your Account</button>
             </div>
         </form>
       </div>

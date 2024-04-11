@@ -42,6 +42,18 @@ interface UserDevice {
     userPlanId: string,
     ActivationDate: string
 }
+interface AuthenticationRegistration {
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    address: string
+}
+interface AuthenticationLogin {
+    username: string,
+    password: string
+}
 
-export type {Device, PhonePlan, UserPlan, User, UserDevice}
+export type {Device, PhonePlan, UserPlan, User, UserDevice, AuthenticationRegistration, AuthenticationLogin}
 
