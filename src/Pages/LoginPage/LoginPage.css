@@ -1,0 +1,9 @@
+.login-page {
+    display: flex;
+}
+.app {
+    position:absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}

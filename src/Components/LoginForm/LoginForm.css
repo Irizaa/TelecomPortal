@@ -1,0 +1,37 @@
+.left-container {
+    width: 60%;
+    background-color: 	#F5F5F5;
+}
+.form-control {
+    width: 400px;
+    height: 60px;
+    margin: 10px;
+    background-color: #F0F0F0	
+}
+.password-container .form-control {
+    width: 240px;
+}
+.form-group {
+    justify-content: center;
+    display:flex;
+}
+#login-text {
+    margin-top: 150px;
+    text-align: center;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; 
+}
+.btn-outline-light, .btn-outline-secondary {
+    margin-top: 22px;
+}
+.password-container {
+    display: flex;
+    justify-content: center;
+}
+.btn-primary {
+    width: 300px;
+    height: 60px;
+}
