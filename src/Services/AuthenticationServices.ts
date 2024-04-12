@@ -14,10 +14,10 @@ export const registerUser = async (registrationDetails: AuthenticationRegistrati
         console.log(responseData);
         loginUser({username: registrationDetails.username, password: registrationDetails.password})
     } catch (e) {
-        if(typeof e === "string") {
-            e.toUpperCase()
-        } else if (e instanceof Error) {
-            alert(e.message);
+        if(axios.isAxiosError(e)) {
+            if(e.response) {
+                alert(JSON.stringify(e.response.data, null, 2).replace(/[{}]/g, '')); // send error message, remove curly braces from alert.
+            }
         }
     }
 }
@@ -29,9 +29,7 @@ export const loginUser = async (loginDetails: AuthenticationLogin) => {
         localStorage.setItem('token', responseData.token);
         window.location.href = '/dashboard';
     } catch (e) {
-        if(typeof e === "string") {
-            e.toUpperCase()
-        } else if (e instanceof Error) {
+        if (e instanceof Error) {
             alert("Invalid username or password")
         }
     }
