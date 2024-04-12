@@ -1,13 +1,9 @@
 import React from 'react'
-import {useNavigate} from 'react-router'
 import './Home.css'
 import BGVideo from '../../Assets/StarVideo.mp4'
 
 const Home = () => {
-  const navigate = useNavigate()
-  const pageRedirect = () => {
-    navigate('/login')
-  }
+
   return (
     <div className = 'main'>
       <div className='overlay'></div>
@@ -15,7 +11,7 @@ const Home = () => {
       <div className="home-content">
         <h1>Star Telecom</h1>
         <p>Welcome to the future of telecommunication.</p>
-        <button onClick={pageRedirect} className="btn btn-dark">Sign in</button>
+        <a href = "login" className="btn btn-dark">Sign in</a>
       </div>
     </div>
   )

@@ -34,7 +34,8 @@ const RegisterForm = () => {
       setAddress(e.target.value);
   }
 
-  const handleRegistration = () => {
+  const handleRegistration = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
 
     const registrationDetails: AuthenticationRegistration = {
       username: username,

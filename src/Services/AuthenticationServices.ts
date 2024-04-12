@@ -12,17 +12,27 @@ export const registerUser = async (registrationDetails: AuthenticationRegistrati
         const response = await http.post('/authentication', registrationDetails)
         const responseData = response.data;
         console.log(responseData);
-        // Handle the response
-    } catch (error) {
-        // Handle the error
+        loginUser({username: registrationDetails.username, password: registrationDetails.password})
+    } catch (e) {
+        if(typeof e === "string") {
+            e.toUpperCase()
+        } else if (e instanceof Error) {
+            alert(e.message);
+        }
     }
 }
 export const loginUser = async (loginDetails: AuthenticationLogin) => {
     try {
+        console.log(loginDetails)
         const response = await http.post('/authentication/login', loginDetails)
         const responseData = response.data;
         localStorage.setItem('token', responseData.token);
-    } catch (error) {
-        console.log(error); // Log the error message
+        window.location.href = '/dashboard';
+    } catch (e) {
+        if(typeof e === "string") {
+            e.toUpperCase()
+        } else if (e instanceof Error) {
+            alert("Invalid username or password")
+        }
     }
 }
