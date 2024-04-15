@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthenticationLogin, AuthenticationRegistration } from "../Types/Types";
+import {AuthenticationLogin, AuthenticationRegistration, PhonePlan} from "../Types/Types";
 
 const http = axios.create({
     baseURL: 'https://localhost:5001',

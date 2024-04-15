@@ -6,13 +6,15 @@ interface Device {
     model: string,
     storage: string,
     color: string
+    pictureUrl: string
 }
 
 interface PhonePlan {
     id: string,
     title: string,
     deviceLimit: number,
-    price: number
+    price: number,
+    phonePlan?: PhonePlan
 }
 
 interface UserPlan {
@@ -42,6 +44,7 @@ interface UserDevice {
     userPlanId: string,
     ActivationDate: string
 }
+
 interface AuthenticationRegistration {
     username: string,
     password: string,
@@ -50,6 +53,7 @@ interface AuthenticationRegistration {
     email: string,
     address: string
 }
+
 interface AuthenticationLogin {
     username: string,
     password: string

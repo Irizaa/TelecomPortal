@@ -57,7 +57,7 @@ const RegisterForm = () => {
     <div className="right-container">
       <div id="registration-text">
         <h1>First time here?</h1>
-        <h3>Sign up and discover the endless posibilities with Star Telecom!</h3>
+        <h3>Sign up and discover the endless possibilities with Star Telecom!</h3>
       </div>
       <form>
         <div className="form-group">
