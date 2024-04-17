@@ -23,23 +23,15 @@ p {
   width: 400px;
   height: 400px;
 }
-#song-name {
+.device-primary-text {
   width: 50vw;
   white-space: pre-wrap;
   font-size: 30px;
   font-weight: bold;
 }
-#artist-name {
+.device-secondary-text {
   font-size: 23px;
   margin-bottom: 20px;
-}
-#song-index {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 6vw;
-  font-size: 35px;
-  background-color: #101010;
 }
 
 ::-webkit-scrollbar {
@@ -70,20 +62,16 @@ p {
       width: 125px;
       height: 125px;
     }
-    #song-name {
+    .device-primary-text {
       font-size: 25px;
       width: 44vw;
     }
-    #artist-name {
+    #device-secondary-text {
       width: 45vw;
       font-size: 20px;
     }
     .device-info {
       margin-top: 4vh;
-    }
-    #song-index {
-      font-size: 25px;
-      width: 13vw;
     }
 
   }

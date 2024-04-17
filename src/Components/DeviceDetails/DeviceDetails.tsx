@@ -10,11 +10,7 @@ interface ModalProps {
 
 
 const DeviceDetails: React.FC<ModalProps> = ({device, userPlans}) => {
-  const handleSave = () => {
-    console.log("Save button clicked!");
-    // Add your save logic here
-  };
-  console.log(userPlans)
+
   
     return (
         <div className = 'device-details-container'>
@@ -22,11 +18,11 @@ const DeviceDetails: React.FC<ModalProps> = ({device, userPlans}) => {
               <li className = 'device-box'>
                 <img className = 'device-image' alt = 'album' src = {device.pictureUrl}></img>
                 <div className = 'device-info'>
-                  <p id = 'artist-name'>{device.manufacturer}</p>
-                  <p id = 'song-name'>{device.model}</p>
-                  <p id = 'artist-name'>{`Color:  ${device.color}`}</p>
-                  <p id = 'artist-name'>{`Storage:  ${device.storage}`}</p>
-                  <DeviceModal title="Add this device to one of your plans:" onSave={handleSave} device = {device} userPlans={userPlans}>
+                  <p className = 'device-secondary-text'>{device.manufacturer}</p>
+                  <p className = 'device-primary-text'>{device.model}</p>
+                  <p className = 'device-secondary-text'>{`Color:  ${device.color}`}</p>
+                  <p className = 'device-secondary-text'>{`Storage:  ${device.storage}`}</p>
+                  <DeviceModal title="Add this device to one of your plans:" device = {device} userPlans={userPlans}>
                     <p></p>
                   </DeviceModal>
                 </div>

@@ -23,9 +23,12 @@ function App() {
 
                 </>
             ) : (
+                <>
                 <Route path="*" element = {<Home/>} />
+                <Route path="/login" element={<LoginPage/>}/>
+                </>
+
             )}
-            <Route path="/login" element={<LoginPage/>}/>
             </Routes>
         </Router>
     );

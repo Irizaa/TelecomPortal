@@ -31,7 +31,6 @@ const RegisterForm = () => {
       email: email,
       address: address
     }
-    console.log(registrationDetails)
     registerUser(registrationDetails)
   };
 

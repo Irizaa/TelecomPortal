@@ -5,13 +5,12 @@ import { addUserDevice } from '../../Services/PhonePlanDeviceServices';
 
 interface ModalProps {
     title: string;
-    onSave: () => void;
     children: ReactNode;
     device: Device;
     userPlans: UserPlan[];
   }
 
-const Modal: React.FC<ModalProps> = ({ title, onSave, children, device, userPlans }) => {
+const Modal: React.FC<ModalProps> = ({ title,children, device, userPlans }) => {
     const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -26,7 +25,6 @@ const Modal: React.FC<ModalProps> = ({ title, onSave, children, device, userPlan
       await addUserDevice(localStorage.getItem('userId') as string, device.id, userPlanId);
       setIsOpen(false);
   }
-  console.log(userPlans)
 
   return (
     <>

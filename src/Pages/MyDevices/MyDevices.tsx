@@ -2,35 +2,46 @@ import { useEffect, useState } from 'react';
 import Header from '../../Components/Header'
 import NavBar from '../../Components/NavBar'
 import './MyDevices.css'
-import { getUserDevicesByPlan } from '../../Services/PhonePlanDeviceServices';
-import { Device } from '../../Types/Types';
-import DeviceDetails from '../../Components/DeviceDetails';
+import { deleteUserPlan, getUserDevicesByPlan } from '../../Services/PhonePlanDeviceServices';
+import { Device, UserDevice, UserPlan } from '../../Types/Types';
+import { getUserPlans } from '../../Services/UserPlanServices';
+import trashpng from '../../Assets/trash.png'
+import MyDeviceList from '../../Components/MyDeviceList';
 
 export function MyDevices() {
 
-    const[devices, setDevices] = useState([] as Device[])
+    const deletePlan = async(id: string) => {
+        await deleteUserPlan(localStorage.getItem('userId') as string, id);
+    }
+
+    const [userPlans, setUserPlans] = useState([] as UserPlan[]);
+    const [userPlan, setUserPlan] = useState<UserPlan | undefined>(undefined);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const userId = localStorage.getItem('userId');
-            if (userId) {
-                try {
-                    const userDevices = await getUserDevicesByPlan(userId);
-                    setDevices(userDevices);
-                } catch (error) {
-                    console.error(error);}
-            }
-        };
-        fetchData();
+        getUserPlans(localStorage.getItem('userId') as string).then((response: any) => {
+            setUserPlans(response.data);
+            setUserPlan(response.data[0]);
+        });
     }, []);
 
+
     return (
-        <div className='myDevices-container'>
+        <div className=''>
             {<Header/>}
             {<NavBar/>}
-                <div className="myDevices-container">
-                {/* {devices.map(device => (<DeviceDetails device={device}/>))} */}
+            <div className="sidenav">
+                <h1> My Plans</h1>
+                {userPlans.map((userPlan, index) => (
+                <div id = 'plan-item'>
+                    <a key={index} href="#" onClick={() => setUserPlan(userPlans[index])}>{userPlan.plan.title}</a>
+                    <img id='trash-img' src={trashpng} alt="trash" onClick={() => deletePlan(userPlan.id)} />
                 </div>
-        </div>
+                ))}
+            </div>
+
+                <div className="main">
+                    {userPlan && <MyDeviceList userPlan={userPlan}/>}
+                </div>
+            </div>
     )
 }

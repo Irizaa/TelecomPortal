@@ -19,7 +19,6 @@ export function DevicesPage() {
             setUserPlans(response.data);
         });
     }, [setDevices]);
-    console.log(userPlans)
 
     return (
         <div className="devices-page">

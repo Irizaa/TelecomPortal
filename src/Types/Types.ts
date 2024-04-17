@@ -47,7 +47,9 @@ interface UserDevice {
     deviceId: string,
     phoneNumber: string,
     userPlanId: string,
-    ActivationDate: string
+    activationDate: string
+    userId: string;
+    device: Device;
 }
 
 interface AuthenticationRegistration {

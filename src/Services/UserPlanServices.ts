@@ -10,6 +10,5 @@ const http = axios.create({
 });
 
 export const getUserPlans = async (userId: string | null) => {
-    console.log(userId)
     return await http.get<Array<UserPlan>>(`/user/${userId}/UserPlan`);
 }
