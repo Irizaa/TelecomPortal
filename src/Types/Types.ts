@@ -8,6 +8,10 @@ interface Device {
     color: string
     pictureUrl: string
 }
+// interface DeviceAndPlan extends Device {
+//     planId: string;
+//     planName: string;
+// }
 
 interface PhonePlan {
     id: string,
@@ -21,6 +25,7 @@ interface UserPlan {
     id: string,
     planId: string,
     userId: string
+    plan: PhonePlan
     // userDevices: UserDevice[]
 }
 

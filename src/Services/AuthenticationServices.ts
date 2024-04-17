@@ -2,14 +2,14 @@ import axios from "axios";
 import {AuthenticationLogin, AuthenticationRegistration, PhonePlan} from "../Types/Types";
 
 const http = axios.create({
-    baseURL: 'https://localhost:5001',
+    baseURL: 'https://localhost:5001/api/authentication',
     headers: {
         'Content-type': 'application/json',
     },
 });
 export const registerUser = async (registrationDetails: AuthenticationRegistration) => {
     try {
-        const response = await http.post('/authentication', registrationDetails)
+        const response = await http.post('register', registrationDetails)
         const responseData = response.data;
         console.log(responseData);
         loginUser({username: registrationDetails.username, password: registrationDetails.password})
@@ -24,10 +24,13 @@ export const registerUser = async (registrationDetails: AuthenticationRegistrati
 export const loginUser = async (loginDetails: AuthenticationLogin) => {
     try {
         console.log(loginDetails)
-        const response = await http.post('/authentication/login', loginDetails)
+        const response = await http.post('login', loginDetails)
         const responseData = response.data;
-        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('accessToken', responseData.accessToken);
+        localStorage.setItem('refreshToken', responseData.refreshToken);
+        localStorage.setItem('userId', responseData.userId);
         window.location.href = '/dashboard';
+        console.log(response)
     } catch (e) {
         if (e instanceof Error) {
             alert("Invalid username or password")

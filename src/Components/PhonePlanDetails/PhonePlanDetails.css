@@ -1,0 +1,16 @@
+.hero {
+    background-color: #074f57;
+    background-image: url('../../Assets/space-2.png');
+    background-size: cover;
+    background-blend-mode: multiply;
+    color: white;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+.container {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

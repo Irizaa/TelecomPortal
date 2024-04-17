@@ -1,8 +1,15 @@
+import Header from '../../Components/Header';
+import NavBar from '../../Components/NavBar';
+import './Dashboard.css';
+
 const Dashboard = () => {
     return (
-        <div>
-            <h1>Dashboard</h1>
-        </div>
+        <>
+            {<Header/>}
+            {<NavBar/>}
+            <div className='dashboard-container'>
+            </div>
+        </>
     )
 }
 export default Dashboard;

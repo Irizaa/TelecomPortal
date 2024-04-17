@@ -1,0 +1,89 @@
+p {
+    color: whitesmoke;
+}
+.device-details-container {
+    margin-left: 3vw;
+    width: 95%;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    overflow-y: scroll;
+}
+.device-box {
+  width: 100%;
+  display: flex;
+  margin-bottom:1vh;
+  background-color: #3d3d3d;
+}
+.device-info {
+  margin-left: 3vw;
+  margin-top: 5vh;
+}
+.device-image {
+  align-items: center;
+  width: 400px;
+  height: 400px;
+}
+#song-name {
+  width: 50vw;
+  white-space: pre-wrap;
+  font-size: 30px;
+  font-weight: bold;
+}
+#artist-name {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+#song-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6vw;
+  font-size: 35px;
+  background-color: #101010;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #3d3d3d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #3d3d3d;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #3d3d3d;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  @media(max-width: 450px) {
+    .device-details-container {
+      margin-top: 2vh;
+      width: 97%;
+    }
+    .device-image {
+      width: 125px;
+      height: 125px;
+    }
+    #song-name {
+      font-size: 25px;
+      width: 44vw;
+    }
+    #artist-name {
+      width: 45vw;
+      font-size: 20px;
+    }
+    .device-info {
+      margin-top: 4vh;
+    }
+    #song-index {
+      font-size: 25px;
+      width: 13vw;
+    }
+
+  }

@@ -1,2 +1,2 @@
-import {deviceDetails} from "./DeviceDetails";
-export default deviceDetails;
+import DeviceDetails from "./DeviceDetails";
+export default DeviceDetails;

@@ -2,35 +2,23 @@
 import React, { useState } from "react";
 import "./../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "./LoginForm.css"
-import { AuthenticationLogin } from "../../Types/Types";
 import { loginUser } from "../../Services/AuthenticationServices";
 
-
-//TODO: ADD ERROR MESSAGES WHEN LOGIN FAILS
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
-    };
-
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    };
+    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
+
     const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const loginDetails: AuthenticationLogin = {
-            username: username,
-            password: password
-        }
-        console.log(loginDetails)
-        loginUser(loginDetails);
+        loginUser({ username, password });
     }
 
     return (

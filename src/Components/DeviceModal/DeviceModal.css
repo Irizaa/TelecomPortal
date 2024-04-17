@@ -1,0 +1,12 @@
+.modal-body {
+    background-color: white;
+    transition: background-color 0.3s ease; /* Add transition for smooth color change */
+  
+    /* Other styles for modal-body */
+  }
+  
+  /* Apply the hover effect */
+  .modal-body:hover {
+    background-color: #f0f0f0; /* Darker color */
+    cursor: pointer; /* Change cursor to pointer */
+  }

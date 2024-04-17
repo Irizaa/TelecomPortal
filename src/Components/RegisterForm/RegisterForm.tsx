@@ -13,26 +13,12 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [address, setAddress] = useState("")
 
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFirstName(e.target.value);
-    };
-  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLastName(e.target.value);
-    }
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setEmail(e.target.value);
-  }
-  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setAddress(e.target.value);
-  }
+  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value);
+  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value);
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value);
 
   const handleRegistration = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -93,6 +79,17 @@ const RegisterForm = () => {
                 placeholder="Address"
             />
         </div>
+        <div className="form-group">
+              <label htmlFor="email"></label>
+              <input
+                  className="form-control"
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Email"
+              />
+          </div>
           <div className="form-group">
               <label htmlFor="username"></label>
               <input
@@ -104,41 +101,30 @@ const RegisterForm = () => {
                   placeholder="Username"
               />
           </div>
-          <div className="form-group">
-              <label htmlFor="email"></label>
-              <input
-                  className="form-control"
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder="Email"
-              />
-          </div>
           <div className = "password-container">
-                    <label htmlFor="password"></label>
-                    <div className="form-group">
-                        <input
+            <label htmlFor="password"></label>
+                <div className="form-group">
+                    <input
                             className="form-control"
                             type={showPassword ? "text" : "password"}
                             id="password"
                             value={password}
                             onChange={handlePasswordChange}
                             placeholder="Password"
-                        />
-                    </div>
+                    />
+                </div>
                     <div className="input-group-append">
-                            <button
-                                className="btn btn-outline-light"
-                                type="button"
-                                onClick={handleTogglePassword}
-                            >
-                                {showPassword ? "Hide" : "Show"}
-                            </button>
-                        </div>
+                        <button
+                            className="btn btn-outline-light"
+                            type="button"
+                            onClick={handleTogglePassword}
+                        >
+                            {showPassword ? "Hide" : "Show"}
+                        </button>
+                    </div>
                 </div>
             <div className="button-container">
-                    <button className="button-register" onClick={handleRegistration}>Create Your Account</button>
+                <button className="button-register" onClick={handleRegistration}>Create Your Account</button>
             </div>
         </form>
       </div>
