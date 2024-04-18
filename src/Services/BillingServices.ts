@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Billing, PhonePlan } from "../Types/Types";
+import { Billing, PhonePlan, PhonePlanWithBill } from "../Types/Types";
 
 const http = axios.create({
     baseURL: 'https://localhost:5001',
@@ -12,8 +12,34 @@ const http = axios.create({
 export const getUserBills = async (userId: string) => {
     return await http.get<Array<Billing>>(`/user/${userId}/Billing`);
 }
+export const payBill = async (userId: string, billingId: string) => {
+    try {
+        await http.put(`/user/${userId}/Billing/billpay`, { 'id': billingId, 'isPaid': true, 'paymentMethod': 'Credit Card'});
+        alert('Bill successfully paid!');
+    } catch (e) {
+        if (axios.isAxiosError(e)) {
+            if (e.response) {
+                alert(JSON.stringify(e.response.data, null, 2).replace(/[{}]/g, ''));
+            }
+        }
+    
+    }
+}
+// const addUserDevice = async (userId: string, deviceId: string, userPlanId: string) => {
+//     try {
+//         await http.post(`/user/${userId}/UserDevice/add/${userPlanId}`, { deviceId: deviceId, userId: userId, userPlanId: userPlanId})
+//         alert('Phone successfully added!')
+//     } catch (e) {
+//         if(axios.isAxiosError(e)) {
+//             if(e.response) {
+//                 alert(JSON.stringify(e.response.data, null, 2).replace(/[{}]/g, ''));
+//             }
+//         }
+//     }
+// }
+
 export const calculateMonthlyBill = (bills: Billing[]) => {
-    const balanceByMonth: Record<string, { totalAmount: number, plans: PhonePlan[] }> = {};
+    const balanceByMonth: Record<string, { totalAmount: number, plans: PhonePlanWithBill[] }> = {};
 
     bills.forEach(bill => {
         const month = new Date(bill.dueDate).toLocaleDateString()
@@ -23,8 +49,12 @@ export const calculateMonthlyBill = (bills: Billing[]) => {
         }
         if (!bill.isPaid) {
             balanceByMonth[month].totalAmount += bill.totalAmount;
-            balanceByMonth[month].plans.push(bill.planDetails);
         }
+        const phonePlanWithBill: PhonePlanWithBill = {
+            ...bill.planDetails,
+            billingId: bill.id
+        }
+        balanceByMonth[month].plans.push(phonePlanWithBill);
     });
 
     return balanceByMonth;

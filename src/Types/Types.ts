@@ -79,5 +79,9 @@ interface AuthenticationLogin {
     password: string
 }
 
-export type {Device, PhonePlan, UserPlan, User, UserDevice, AuthenticationRegistration, AuthenticationLogin, Billing}
+interface PhonePlanWithBill extends PhonePlan {
+    billingId: string;
+}
+
+export type {Device, PhonePlan, UserPlan, User, UserDevice, AuthenticationRegistration, AuthenticationLogin, Billing, PhonePlanWithBill}
 

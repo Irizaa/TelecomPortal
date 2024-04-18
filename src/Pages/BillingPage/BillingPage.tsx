@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import NavBar from '../../Components/NavBar';
 import './BillingPage.css';
-import { calculateMonthlyBill, getUserBills } from '../../Services/BillingServices';
-import { Billing, PhonePlan } from '../../Types/Types';
+import { calculateMonthlyBill, getUserBills, payBill } from '../../Services/BillingServices';
+import { Billing, PhonePlan, PhonePlanWithBill } from '../../Types/Types';
 
 const BillingPage = () => {
-    const [monthlyBill, setMonthlyBill] = useState({} as Record<string, { totalAmount: number, plans: PhonePlan[] }>);
+    const [monthlyBill, setMonthlyBill] = useState({} as Record<string, { totalAmount: number, plans: PhonePlanWithBill[] }>);
     const [expandedBill, setExpandedBill] = useState<string | null>(null);
 
     useEffect(() => {
@@ -15,8 +15,8 @@ const BillingPage = () => {
         });
     }, []);
 
-    const handlePlanClick = (billingId: string) => {
-        
+    const handlePlanClick = async(billingId: string) => {
+        await payBill(localStorage.getItem('userId') as string, billingId);
     };
     
     const handleRowClick = (dueDate: string) => {
@@ -26,6 +26,8 @@ const BillingPage = () => {
             setExpandedBill(dueDate);
         }
     };
+    console.log(monthlyBill)
+
 
     return (
         <>
@@ -55,7 +57,7 @@ const BillingPage = () => {
                                         {monthlyBill.plans.map((plan, index) => (
                                             <div key={index} style={{ marginBottom: '10px' }}>
                                                 <p>{plan.title} - {plan.price}</p>
-                                                <button className="btn btn-danger" style={{ width: '25%' }} onClick={() => handlePlanClick(dueDate)}>Pay Bill</button>
+                                                <button className="btn btn-danger" style={{ width: '25%' }} onClick={() => handlePlanClick(plan.billingId)}>Pay Bill</button>
                                             </div>
                                         ))}
                                     </div>
