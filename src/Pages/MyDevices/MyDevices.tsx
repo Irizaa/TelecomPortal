@@ -29,15 +29,15 @@ export function MyDevices() {
     }, []);
 
     return (
-        <div className=''>
+        <>
             {<Header/>}
             {<NavBar/>}
             <div className="sidenav">
                 <h1> My Plans</h1>
                 {userPlans.length === 0 ? (
                     <>
-                    <p>Nothing to see here...</p>
-                    <button className="btn btn-primary" onClick={() => navigate('/phoneplans')}>Browse Phone Plans</button>
+                        <p>Nothing to see here...</p>
+                        <button className="btn btn-primary" onClick={() => navigate('/phoneplans')}>Browse Phone Plans</button>
                     </>
                 ) : (
                     userPlans.map((currentPlan, index) => (
@@ -52,6 +52,6 @@ export function MyDevices() {
             <div className="main">
                 {userPlan && <MyDeviceList userPlan={userPlan}/>}
             </div>
-        </div>
+        </>
     )
 }

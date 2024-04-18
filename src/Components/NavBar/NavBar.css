@@ -4,4 +4,5 @@
 }
 .nav-link {
     color: white;
+    cursor: pointer;
 }

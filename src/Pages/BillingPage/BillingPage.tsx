@@ -48,7 +48,7 @@ const BillingPage = () => {
                             <td className="billing-data">
                                 {monthlyBill.totalAmount > 0 ? (
                                     <>
-                                        Outstanding Balance: ${monthlyBill.totalAmount}
+                                        Outstanding Balance: ${monthlyBill.totalAmount.toFixed(2)}
                                     </>
                                 ) : (
                                     <p>Paid</p>
