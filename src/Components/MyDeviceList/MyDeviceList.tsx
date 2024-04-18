@@ -17,6 +17,7 @@ const MyDeviceList:React.FC<ModalProps> = ({userPlan}) => {
 
   const removeDevice = async(deviceId: string) => {
     await deleteUserDevice(localStorage.getItem('userId') as string, deviceId);
+    setDevices(devices.filter(device => device.id !== deviceId));
   }
 
   const [devices, setDevices] = useState([] as UserDevice[]);

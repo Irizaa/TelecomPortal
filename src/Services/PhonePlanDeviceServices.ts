@@ -83,7 +83,8 @@ const addUserPlan = async (userId: string, phonePlanId: string) => {
 const deleteUserPlan = async (userId: string, phonePlanId: string) => {
     try {
         await http.delete(`/user/${userId}/UserPlan/delete/${phonePlanId}`);
-        alert('Plan successfully deleted!')
+        alert('Plan successfully deleted!');
+        window.location.reload();
     } catch (e) {
         if(axios.isAxiosError(e)) {
             if(e.response) {
@@ -96,6 +97,7 @@ const deleteUserDevice = async (userId: string, deviceId: string) => {
     try {
         await http.delete(`/user/${userId}/UserDevice/delete/${deviceId}`);
         alert('Device successfully deleted!')
+        
     } catch (e) {
         if(axios.isAxiosError(e)) {
             if(e.response) {

@@ -11,6 +11,7 @@ const BillingPage = () => {
 
     useEffect(() => {
         getUserBills(localStorage.getItem('userId') as string).then(response => {
+            console.log(response.data)
             setMonthlyBill(calculateMonthlyBill(response.data));
         });
     }, []);
@@ -53,11 +54,22 @@ const BillingPage = () => {
                                     <p>Paid</p>
                                 )}
                                 {expandedBill === dueDate && (
-                                    <div id = 'expanded-div'>
+                                    <div id='expanded-div'>
                                         {monthlyBill.plans.map((plan, index) => (
-                                            <div key={index} style={{ marginBottom: '10px' }}>
-                                                <p>{plan.title} - {plan.price}</p>
-                                                <button className="btn btn-danger" style={{ width: '25%' }} onClick={() => handlePlanClick(plan.billingId)}>Pay Bill</button>
+                                            <div key={index}>
+                                                {plan.isPaid ? (
+                                                    <p>{plan.title} - ${plan.price} : Paid</p>
+                                                ) : (
+                                                    <>
+                                                    <p>{plan.title} - ${plan.price} </p>
+
+                                                    <button className="btn btn-danger" 
+                                                    style={{ width: '30%' }} 
+                                                    onClick={() => handlePlanClick(plan.billingId)}>Pay Bill
+                                                    </button>
+
+                                                    </>
+                                                )}
                                             </div>
                                         ))}
                                     </div>

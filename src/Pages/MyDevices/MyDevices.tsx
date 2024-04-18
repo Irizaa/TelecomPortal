@@ -15,6 +15,7 @@ export function MyDevices() {
 
     const deletePlan = async(id: string) => {
         await deleteUserPlan(localStorage.getItem('userId') as string, id);
+        setUserPlans(userPlans.filter(plan => plan.id !== id));
     }
 
     const [userPlans, setUserPlans] = useState([] as UserPlan[]);

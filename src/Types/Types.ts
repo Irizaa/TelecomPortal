@@ -81,6 +81,7 @@ interface AuthenticationLogin {
 
 interface PhonePlanWithBill extends PhonePlan {
     billingId: string;
+    isPaid: boolean;
 }
 
 export type {Device, PhonePlan, UserPlan, User, UserDevice, AuthenticationRegistration, AuthenticationLogin, Billing, PhonePlanWithBill}

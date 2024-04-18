@@ -16,6 +16,7 @@ export const payBill = async (userId: string, billingId: string) => {
     try {
         await http.put(`/user/${userId}/Billing/billpay`, { 'id': billingId, 'isPaid': true, 'paymentMethod': 'Credit Card'});
         alert('Bill successfully paid!');
+        window.location.reload();
     } catch (e) {
         if (axios.isAxiosError(e)) {
             if (e.response) {
@@ -39,23 +40,24 @@ export const payBill = async (userId: string, billingId: string) => {
 // }
 
 export const calculateMonthlyBill = (bills: Billing[]) => {
-    const balanceByMonth: Record<string, { totalAmount: number, plans: PhonePlanWithBill[] }> = {};
+    const monthlyBill: Record<string, { totalAmount: number, plans: PhonePlanWithBill[] }> = {};
 
     bills.forEach(bill => {
         const month = new Date(bill.dueDate).toLocaleDateString()
 
-        if (!balanceByMonth[month]) {
-            balanceByMonth[month] = { totalAmount: 0, plans: [] };
+        if (!monthlyBill[month]) {
+            monthlyBill[month] = { totalAmount: 0, plans: [] };
         }
         if (!bill.isPaid) {
-            balanceByMonth[month].totalAmount += bill.totalAmount;
+            monthlyBill[month].totalAmount += bill.totalAmount;
         }
         const phonePlanWithBill: PhonePlanWithBill = {
             ...bill.planDetails,
-            billingId: bill.id
+            billingId: bill.id,
+            isPaid: bill.isPaid
         }
-        balanceByMonth[month].plans.push(phonePlanWithBill);
+        monthlyBill[month].plans.push(phonePlanWithBill);
     });
 
-    return balanceByMonth;
+    return monthlyBill;
 };
