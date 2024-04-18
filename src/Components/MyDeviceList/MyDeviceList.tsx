@@ -5,54 +5,68 @@ import "./../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './MyDeviceList.css';
 import DeviceModal from "../DeviceModal";
 import SwapDeviceModal from "../SwapDeviceModal";
+import { useNavigate } from 'react-router-dom'
 
 interface ModalProps {
-    userPlan: UserPlan;
+  userPlan: UserPlan;
 }
 
 const MyDeviceList:React.FC<ModalProps> = ({userPlan}) => {
+  const navigate = useNavigate()
 
-    const removeDevice = async(deviceId: string) => {
-        await deleteUserDevice(localStorage.getItem('userId') as string, deviceId);
-    }
 
-    const [devices, setDevices] = useState([] as UserDevice[]);
+  const removeDevice = async(deviceId: string) => {
+    await deleteUserDevice(localStorage.getItem('userId') as string, deviceId);
+  }
 
-    useEffect(() => {
-        getUserDevicesByPlan(localStorage.getItem('userId') as string, userPlan.id).then(response => {
-            setDevices(response.data);
-        });
-    }, [userPlan])
+  const [devices, setDevices] = useState([] as UserDevice[]);
 
-    return (
-        <table className="table">
-        <thead>
-          <tr className="table-dark">
-            <th scope="col">Device Name</th>
-            <th scope="col">Device Model</th>
-            <th scope="col">Phone Number</th>
-            <th scope="col">Activation Date</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {devices.map((device, index) => (
-            <tr key={index}>
-              <td>{device.device.model}</td>
-              <td>{device.device.manufacturer}</td>
-              <td>{device.phoneNumber}</td>
-              <td>{new Date(device.activationDate).toLocaleDateString()}</td>
-              <td><button className="btn btn-danger table-button" onClick={() => removeDevice(device.id)}>Remove Phone</button></td>
-              <td>
-                <SwapDeviceModal device={device} userPlans={[userPlan]}>
-                <p></p>
-                </SwapDeviceModal>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  useEffect(() => {
+    getUserDevicesByPlan(localStorage.getItem('userId') as string, userPlan.id).then(response => {
+      setDevices(response.data);
+    });
+  }, [userPlan])
+
+  return (
+    <>
+    <h1>My Devices</h1>
+    {devices.length === 0 ? (
+      <>
+        <p>Nothing found here...</p>
+        <button className="btn btn-primary" onClick={() => navigate('/devices')}>Browse Devices</button>
+      </>
+    ) : (
+      <table className="table">
+      <thead>
+        <tr className="table-dark">
+        <th scope="col">Device Name</th>
+        <th scope="col">Device Model</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Activation Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {devices.map((device, index) => (
+        <tr key={index}>
+          <td>{device.device.model}</td>
+          <td>{device.device.manufacturer}</td>
+          <td>{device.phoneNumber}</td>
+          <td>{new Date(device.activationDate).toLocaleDateString()}</td>
+          <td><button className="btn btn-danger table-button" onClick={() => removeDevice(device.id)}>Remove Phone</button></td>
+          <td>
+          <SwapDeviceModal device={device} userPlans={[userPlan]}>
+            <p></p>
+          </SwapDeviceModal>
+          </td>
+        </tr>
+        ))}
+      </tbody>
       </table>
-    );
+    )}
+    </>
+  );
 }
+
 export default MyDeviceList;

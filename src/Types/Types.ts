@@ -52,6 +52,19 @@ interface UserDevice {
     device: Device;
 }
 
+interface Billing {
+    id: string;
+    userPlanId: string;
+    userId: string;
+    totalAmount: number;
+    billingDate: string;
+    dueDate: string;
+    isPaid: boolean;
+    paymentMethod: string;
+    planDetails: PhonePlan;
+}
+
+
 interface AuthenticationRegistration {
     username: string,
     password: string,
@@ -66,5 +79,5 @@ interface AuthenticationLogin {
     password: string
 }
 
-export type {Device, PhonePlan, UserPlan, User, UserDevice, AuthenticationRegistration, AuthenticationLogin}
+export type {Device, PhonePlan, UserPlan, User, UserDevice, AuthenticationRegistration, AuthenticationLogin, Billing}
 

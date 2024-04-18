@@ -5,7 +5,7 @@ import BGVideo from '../../Assets/StarVideo.mp4'
 const Home = () => {
 
   return (
-    <div className = 'main'>
+    <div className = 'home-container'>
       <div className='overlay'></div>
       <video src = {BGVideo} autoPlay loop muted preload='auto'/>
       <div className="home-content">
