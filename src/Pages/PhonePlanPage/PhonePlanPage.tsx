@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Header from "../../Components/Header";
-import {PhonePlan} from "../../Types/Types";
-import {getPhonePlans} from "../../Services/PhonePlanDeviceServices";
-import {PhonePlanDetails} from "../../Components/PhonePlanDetails/PhonePlanDetails";
-import "./PhonePlanPage.css";
 import NavBar from "../../Components/NavBar";
+import {PhonePlanDetails} from "../../Components/PhonePlanDetails/PhonePlanDetails";
+import {PhonePlan} from "../../Types/Types";
+import {getPhonePlans} from "../../Services/PhonePlanServices";
+import "./PhonePlanPage.css";
 import space1 from '../../Assets/space-1.png'
 import space2 from '../../Assets/space-2.png'
 import space3 from '../../Assets/space-3.png'
 
-const backgroundImages = [space1, space2, space3]; // Array of background images
+const backgroundImages = [space1, space2, space3];
 
 export function PhonePlanPage() {
     const [phonePlans, setPhonePlans] = useState([] as PhonePlan[])
@@ -21,7 +21,7 @@ export function PhonePlanPage() {
     }, [setPhonePlans]);
 
     return (
-        <div className="phone-plan-container">
+        <>
             {<Header/>}
             {<NavBar/>}
             <div>
@@ -32,6 +32,6 @@ export function PhonePlanPage() {
                 />
             ))}
             </div>
-        </div>
+        </>
     )
 }

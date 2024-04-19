@@ -53,25 +53,25 @@ p {
     border: 6px solid transparent;
     background-clip: content-box;
   }
-  @media(max-width: 450px) {
-    .device-details-container {
-      margin-top: 2vh;
-      width: 97%;
-    }
-    .device-image {
-      width: 125px;
-      height: 125px;
-    }
-    .device-primary-text {
-      font-size: 25px;
-      width: 44vw;
-    }
-    #device-secondary-text {
-      width: 45vw;
-      font-size: 20px;
-    }
-    .device-info {
-      margin-top: 4vh;
-    }
 
+@media(max-width: 450px) {
+  .device-details-container {
+    margin-top: 2vh;
+    width: 97%;
   }
+    .device-image {
+    width: 125px;
+    height: 125px;
+  }
+  .device-primary-text {
+    font-size: 25px;
+    width: 44vw;
+  }
+  #device-secondary-text {
+    width: 45vw;
+    font-size: 20px;
+  }
+  .device-info {
+    margin-top: 4vh;
+  }
+}

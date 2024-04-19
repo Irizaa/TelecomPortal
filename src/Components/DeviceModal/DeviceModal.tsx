@@ -1,17 +1,17 @@
 import React, { ReactNode, useState } from 'react';
-import { Device, PhonePlan, UserPlan } from '../../Types/Types';
-import './DeviceModal.css';
-import { addUserDevice } from '../../Services/PhonePlanDeviceServices';
+import { Device, UserPlan } from '../../Types/Types';
+import { addUserDevice } from '../../Services/DeviceServices';
 
+import './DeviceModal.css';
 interface ModalProps {
-    title: string;
     children: ReactNode;
     device: Device;
     userPlans: UserPlan[];
   }
 
-const Modal: React.FC<ModalProps> = ({ title,children, device, userPlans }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const Modal: React.FC<ModalProps> = ({ device, userPlans }) => {
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -23,7 +23,7 @@ const Modal: React.FC<ModalProps> = ({ title,children, device, userPlans }) => {
 
   const handleClick = async(userPlanId: string) => {
       await addUserDevice(localStorage.getItem('userId') as string, device.id, userPlanId);
-      setIsOpen(false);
+      closeModal();
   }
 
   return (
@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({ title,children, device, userPlans }) => {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">{title}</h5>
+                <h5 className="modal-title">Add this device to one of your plans:</h5>
               </div>
               <div>
                 {userPlans?.map((userPlan, index) => (

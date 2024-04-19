@@ -40,7 +40,12 @@
     .form-control {
         width: 80%;
     }
-    .btn-outline-secondary {
+    /* Update the password input and button width */
+    .password-container .form-control,
+    .password-container .input-group-append button {
+        width: 80%; /* Adjust width to 80% */
+    }
+    .btn-outline-secondary, .btn-outline-light {
         display: none;
     }
 }

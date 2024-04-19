@@ -1,4 +1,4 @@
-import {Device, PhonePlan, UserPlan} from "../../Types/Types";
+import {Device, UserPlan} from "../../Types/Types";
 import './DeviceDetails.css'
 import DeviceModal from "../DeviceModal";
 
@@ -11,7 +11,6 @@ interface ModalProps {
 
 const DeviceDetails: React.FC<ModalProps> = ({device, userPlans}) => {
 
-  
     return (
         <div className = 'device-details-container'>
           <ul>
@@ -22,7 +21,7 @@ const DeviceDetails: React.FC<ModalProps> = ({device, userPlans}) => {
                   <p className = 'device-primary-text'>{device.model}</p>
                   <p className = 'device-secondary-text'>{`Color:  ${device.color}`}</p>
                   <p className = 'device-secondary-text'>{`Storage:  ${device.storage}`}</p>
-                  <DeviceModal title="Add this device to one of your plans:" device = {device} userPlans={userPlans}>
+                  <DeviceModal device = {device} userPlans={userPlans}>
                     <p></p>
                   </DeviceModal>
                 </div>

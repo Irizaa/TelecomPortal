@@ -1,0 +1,20 @@
+@media (max-width: 1000px) {
+    #mydevice-table {
+        display: block !important;
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+        width: 100% !important;
+        left: 0;
+        right: 0;
+        margin-top: 420px;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        width: 40%;
+        outline: 1px solid black;
+        background: white;
+    }
+    #mydevice-text {
+        font-size: 0px;
+    }
+}

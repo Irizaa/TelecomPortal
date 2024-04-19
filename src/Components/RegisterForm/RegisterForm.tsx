@@ -4,13 +4,12 @@ import { AuthenticationRegistration } from "../../Types/Types";
 import { registerUser } from "../../Services/AuthenticationServices";
 
 const RegisterForm = () => {
-
+  const [showPassword, setShowPassword] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [address, setAddress] = useState("")
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value);
@@ -22,7 +21,6 @@ const RegisterForm = () => {
 
   const handleRegistration = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     const registrationDetails: AuthenticationRegistration = {
       username: username,
       password: password,

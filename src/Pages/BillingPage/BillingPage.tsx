@@ -3,7 +3,7 @@ import Header from '../../Components/Header';
 import NavBar from '../../Components/NavBar';
 import './BillingPage.css';
 import { calculateMonthlyBill, getUserBills, payBill } from '../../Services/BillingServices';
-import { Billing, PhonePlan, PhonePlanWithBill } from '../../Types/Types';
+import { PhonePlanWithBill } from '../../Types/Types';
 
 const BillingPage = () => {
     const [monthlyBill, setMonthlyBill] = useState({} as Record<string, { totalAmount: number, plans: PhonePlanWithBill[] }>);
@@ -38,14 +38,14 @@ const BillingPage = () => {
                 <thead>
                     <tr className="table-dark">
                         <th scope="col" style={{ width: '30%' }}>Due Date</th>
-                        <th scope="col" style={{ width: '50%' }}>Status</th>
+                        <th scope="col" style={{ width: '60%' }}>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {Object.entries(monthlyBill).map(([dueDate, monthlyBill]) => (
                         <tr key={dueDate} onClick={() => handleRowClick(dueDate)}>
-                            <td className="billing-data">{dueDate}</td>
-                            <td className="billing-data">
+                            <td>{dueDate}</td>
+                            <td>
                                 {monthlyBill.totalAmount > 0 ? (
                                     <>
                                         Outstanding Balance: ${monthlyBill.totalAmount.toFixed(2)}

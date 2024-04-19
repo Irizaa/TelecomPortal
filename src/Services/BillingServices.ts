@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Billing, PhonePlan, PhonePlanWithBill } from "../Types/Types";
+import { Billing, PhonePlanWithBill } from "../Types/Types";
 
 const http = axios.create({
     baseURL: 'https://localhost:5001',
@@ -26,20 +26,9 @@ export const payBill = async (userId: string, billingId: string) => {
     
     }
 }
-// const addUserDevice = async (userId: string, deviceId: string, userPlanId: string) => {
-//     try {
-//         await http.post(`/user/${userId}/UserDevice/add/${userPlanId}`, { deviceId: deviceId, userId: userId, userPlanId: userPlanId})
-//         alert('Phone successfully added!')
-//     } catch (e) {
-//         if(axios.isAxiosError(e)) {
-//             if(e.response) {
-//                 alert(JSON.stringify(e.response.data, null, 2).replace(/[{}]/g, ''));
-//             }
-//         }
-//     }
-// }
 
 export const calculateMonthlyBill = (bills: Billing[]) => {
+    // Map [Date : Bills for that date]. Allows us to group together bills per month.
     const monthlyBill: Record<string, { totalAmount: number, plans: PhonePlanWithBill[] }> = {};
 
     bills.forEach(bill => {
