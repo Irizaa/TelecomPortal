@@ -17,16 +17,3 @@ export const getDeviceById = async(id: string) => {
     return await http.get<Device>(`/device/${id}`)
 }
 
-export const addUserDevice = async (userId: string, deviceId: string, userPlanId: string) => {
-    try {
-        await http.post(`/user/${userId}/UserDevice/add/${userPlanId}`, { deviceId: deviceId, userId: userId, userPlanId: userPlanId})
-        alert('Phone successfully added!')
-    } catch (e) {
-        if(axios.isAxiosError(e)) {
-            if(e.response) {
-                alert(JSON.stringify(e.response.data, null, 2).replace(/[{}]/g, ''));
-            }
-        }
-    }
-}
-

@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { Device, UserPlan } from '../../Types/Types';
-import { addUserDevice } from '../../Services/DeviceServices';
+import { addUserDevice } from '../../Services/UserDeviceServices';
 
 import './DeviceModal.css';
 interface ModalProps {

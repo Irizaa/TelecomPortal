@@ -37,7 +37,7 @@ export function MyDevices() {
                     <h1 style={{ color: 'white' }}> My Plans</h1>
                     {userPlans.length === 0 ? (
                         <>
-                            <p>Nothing to see here...</p>
+                            <p >Nothing to see here...</p>
                             <button className="btn btn-primary" onClick={() => navigate('/phoneplans')}>Browse Phone Plans</button>
                         </>
                     ) : (

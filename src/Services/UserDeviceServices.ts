@@ -17,6 +17,19 @@ export const getAllUserDevices = async (userId: string) => {
     return await http.get<Array<UserDevice>>(`/user/${userId}/UserDevice`);
 }
 
+export const addUserDevice = async (userId: string, deviceId: string, userPlanId: string) => {
+    try {
+        await http.post(`/user/${userId}/UserDevice/add/${userPlanId}`, { deviceId: deviceId, userId: userId, userPlanId: userPlanId})
+        alert('Phone successfully added!')
+    } catch (e) {
+        if(axios.isAxiosError(e)) {
+            if(e.response) {
+                alert(JSON.stringify(e.response.data, null, 2).replace(/[{}]/g, ''));
+            }
+        }
+    }
+}
+
 export const deleteUserDevice = async (userId: string, deviceId: string) => {
     try {
         await http.delete(`/user/${userId}/UserDevice/delete/${deviceId}`);
