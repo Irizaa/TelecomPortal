@@ -46,30 +46,16 @@ const BillingPage = () => {
                         <tr key={dueDate} onClick={() => handleRowClick(dueDate)}>
                             <td>{dueDate}</td>
                             <td>
-                                {monthlyBill.totalAmount > 0 ? (
-                                    <>
-                                        Outstanding Balance: ${monthlyBill.totalAmount.toFixed(2)}
-                                    </>
-                                ) : (
-                                    <p>Paid</p>
-                                )}
+                                Outstanding Balance: ${monthlyBill.totalAmount.toFixed(2)}
                                 {expandedBill === dueDate && (
                                     <div id='expanded-div'>
                                         {monthlyBill.plans.map((plan, index) => (
-                                            <div key={index}>
-                                                {plan.isPaid ? (
-                                                    <p>{plan.title} - ${plan.price} : Paid</p>
-                                                ) : (
-                                                    <>
-                                                    <p>{plan.title} - ${plan.price} </p>
-
-                                                    <button className="btn btn-danger" 
-                                                    style={{ width: '30%' }} 
-                                                    onClick={() => handlePlanClick(plan.billingId)}>Pay Bill
-                                                    </button>
-
-                                                    </>
-                                                )}
+                                            <div key={index}>                                                
+                                                <p>{plan.title} - ${plan.price} </p>
+                                                <button className="btn btn-danger" 
+                                                style={{ width: '30%' }} 
+                                                onClick={() => handlePlanClick(plan.billingId)}>Pay Bill
+                                                </button>
                                             </div>
                                         ))}
                                     </div>
